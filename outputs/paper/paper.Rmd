@@ -21,7 +21,7 @@ library(palmerpenguins)
 # Introduction
 
 Obesity is a major issue in many societies nowadays.
-yea yea.
+yea yea.ddd
 
 You can and should cross-reference sections and sub-sections. For instance, Section \@ref(data). R Markdown automatically makes the sections lower case and adds a dash to spaces to generate labels, for instance, Section \@ref(first-discussion-point). 
 

@@ -5,7 +5,7 @@ author: Justin Teng
 thanks: "'Code and data are available in this GitHub repository: https://github.com/justinteng1999/Canadian_Adult_BMI"
 date: "April 6th, 2022" 
 abstract: This report presents an analysis of the data from Statistics Canada on the population of obesed people in Canada. This analysis focuses on the variables, suhc as States, Gender and Age in relation with Body Mass Index (BMI). The analysis is consisted of logistic regression performed with the statistical programming language R. The result we obtained from the paper will increase the awareness of obesity for certain groups of people,who have higher risk of being obesed. Morever, it can contribute to the development of medical solution for people who are suffering from obesity. 
-keyword: obesity, BMI, age and BMI, gender and BMI, obesed population in Canada, Statistics Canada, 
+  \par\textbf{Keywords:} obesity, BMI, age and BMI, gender and BMI, obesed population in Canada, Statistics Canada, 
 output:
   bookdown::pdf_document2
 toc: FALSE
@@ -21,7 +21,7 @@ library(palmerpenguins)
 
 # Introduction
 
-Obesity is a major issue in the Canadian society nowadays. For instance, approximately 1 in 4 Canadian adult is Obese, and obesity prevalence rates in Canadian adults are projected to continue to increase over the next two decades. An obese adult is at a higher risk of certain chronic conditions, including hypertension, type two diabetes, cardiovascular diseases and some cancers, and of premature death.[@NIH]
+Obesity is a major issue in the Canadian society nowadays. For instance, approximately 1 in 4 Canadian adult is Obese, and obesity prevalence rates in Canadian adults are projected to continue to increase over the next two decades. An obese adult is at a higher risk of certain chronic conditions, including hypertension, type two diabetes, cardiovascular diseases and some cancers, and of premature death.[@NIH]  The data for this report was obtained from Statistics Canada released on 2017-08-01.  In this report, the data is analyzed on the relation between each variable and the BMI number of Canadian adults(18+).
 
 
 # Data

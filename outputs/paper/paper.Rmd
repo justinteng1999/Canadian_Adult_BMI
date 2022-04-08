@@ -2,9 +2,9 @@
 title: "Obesity in Canada (title might be changed after analysis)"
 subtitle: "A study on obesity in Canada with data from Statistics Canada"
 author: Justin Teng   
-thanks: "'Code and data are available in this GitHub repository:"
+thanks: "'Code and data are available in this GitHub repository: https://github.com/justinteng1999/Canadian_Adult_BMI"
 date: "April 6th, 2022" 
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: This report presents an analysis of the data from Statistics Canada on the population of obesed people in Canada. This analysis focuses on the variables, suhc as States, Gender and Age in relation with Body Mass Index (BMI). The analysis is consisted of logistic regression performed with the statistical programming language R. The result we obtained from the paper will increase the awareness of obesity for certain groups of people,who have higher risk of being obesed. Morever, it can contribute to the development of medical solution for people who are suffering from obesity. 
 output:
   bookdown::pdf_document2
 toc: FALSE
@@ -20,58 +20,16 @@ library(palmerpenguins)
 
 # Introduction
 
-Obesity is a major issue in many societies nowadays.
-yea yea.ddd
-
-You can and should cross-reference sections and sub-sections. For instance, Section \@ref(data). R Markdown automatically makes the sections lower case and adds a dash to spaces to generate labels, for instance, Section \@ref(first-discussion-point). 
-
+Obesity is a major issue in many societies nowadays..
 
 
 # Data
 
-Our data is of penguins (Figure \@ref(fig:bills)).
-
-```{r bills, fig.cap="Bills of penguins", echo = FALSE}
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = FALSE) +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
-```
-
-Talk more about it.
-
-Also bills and their average (Figure \@ref(fig:billssssss)). (Notice how you can change the height and width so they don't take the whole page?)
-
-```{r billssssss, fig.cap="More bills of penguins", echo = FALSE, fig.width=8, fig.height=4}
-
-# This needs to be about the random data tha tI sasmpled?
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = FALSE) +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
-```
-
-Talk way more about it. 
+This dataset we utilized for this report is publicly available throught Statistics Canada... 
 
 
 
 # Model
-
-\begin{equation}
-Pr(\theta | y) = \frac{Pr(y | \theta) Pr(\theta)}{Pr(y)}  (\#eq:bayes)
-\end{equation}
-
-Equation \@ref(eq:bayes) seems useful, eh?
-
-Here's a dumb example of how to use some references: In paper we run our analysis in `R` [@citeR]. We also use the `tidyverse` which was written by @thereferencecanbewhatever If we were interested in baseball data then @citeLahman could be useful. 
-
-We can use maths by including latex between dollar signs, for instance $\theta$.
 
 
 # Results
@@ -80,7 +38,6 @@ We can use maths by including latex between dollar signs, for instance $\theta$.
 
 ## First discussion point
 
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
 
 ## Second discussion point
 

@@ -1,5 +1,5 @@
 ---
-title: "Obesity in Canada (title might be changed after analysis)"
+title: "Males and People Between 45-54 Years Old are More Likely Suffering from Obesity"
 subtitle: "A study on obesity in Canada with data from Statistics Canada"
 author: Justin Teng   
 thanks: "'Code and data are available in this GitHub repository: https://github.com/justinteng1999/Canadian_Adult_BMI"
@@ -43,19 +43,33 @@ BMI_data_2015 <- BMI_data %>%
 
 # Introduction
 
-  Obesity is a major issue in the Canadian society nowadays. For instance, according to the 2015 Canadian Health Measures Survey, approximately 1 in 3 Canadian adults is obese and may require medical support to manage their disease.[@obesityCAN] Moreover, obesity prevalence rates in Canadian adults are projected to increase over the next two decades. Obesity is a progressive chronic disease that is characterized by abnormal or excessive fat accumulation that may impair one's health condition.[@obesityCAN] An obese adult is at a higher risk of certain chronic conditions, including hypertension, type two diabetes, cardiovascular diseases, cancers, and of premature death in the worst case.[@NIH] It is estimated that 1 in 10 premature deaths among Canadian adults age 20 to 64 is directly attributable to obesity. Other than all of its negative impact on health, it also affects one's overall social and economic well-being due to the body-discriminating social stigma associated with it.
-The data for this report was obtained from Statistics Canada released on 2017-08-01, and this dataset contains the survey done in both 2004 and 2015 with the same variables recorded.  In this report, the data is analyzed on the relation between each variable and the Body Mass Index(BMI) of Canadian adults(18+). The main variables we will be focusing on are age group, sexes and each province of Canada.
+  The prevalence of obese individuals has been increasing worldwide for decades despite various efforts of preventing the condition, and obesity is also a major health issue in the Canadian society nowadays.[@NIHmale] For instance, according to the 2015 Canadian Health Measures Survey, approximately 1 in 3 Canadian adults is obese and may require medical support to manage their disease.[@obesityCAN] Moreover, obesity prevalence rates in Canadian adults are projected to increase over the next two decades. Obesity is a progressive chronic disease that is characterized by abnormal or excessive fat accumulation that may impair one's health condition.[@obesityCAN] An obese adult is at a higher risk of certain chronic conditions, including hypertension, type two diabetes, cardiovascular diseases, cancers, and of premature death in the worst case.[@NIH] It is estimated that 1 in 10 premature deaths among Canadian adults age 20 to 64 is directly attributable to obesity. Other than all of its negative impact on health, it also affects one's overall social and economic well-being due to the body-discriminating social stigma associated with it. The purpose of this report is to raise the society's awareness for recognizing the group of the population who are at higher risk of being overweight or obese. This analysis can provide a better insight on high-risk individuals based on gender, age and geographical factors. In a broader picture, this report can help researchers create solutions to solve the arising obese population worldwide.
+  This paper is going to be investigating on the changes of Canadian's obese population from 2004 to 2015, as we will be observing on how the different variables change in the 11 years of time span. The main variables we will be focusing on are age group(18+), sexes(males and females) and geography(the provinces of Canada). The data for this report was obtained from Statistics Canada released on 2017-08-01, and this dataset contains the survey done in both 2004 and 2015 with the same variables recorded.  In this report, the data is analyzed on the relation between the variables and the Body Mass Index(BMI) of Canadian adults(18+). The details of how we cleaned and selected the variables for analysis will be included in Section \@ref(data).  In Section \@ref(result), graphs are generated to showcase the relation between each variable and BMI in both 2004 and 2015, and I will be analyzing on the results shown on the graphs. From the graphs, we can see that the obese proportion in both males and females increased significantly from 2004 to 2015, with males having a larger overweight and obese proportion than females.  Also, it is shown from the result that people whose age are between 45-54 tend to have a higher risk of being obese.  In Section \@ref(discussion), I will be discussing on the findings, ethics and limitation regarding to this study.
 
+# Data{#data}
 
-# Data
+ This report was produced with R Statistical Programming Language[@citeR] in the R Markdown file format. The dataset I utilized for this report is publicly available through Statistics Canada[@StatCan]. This dataset contains a wide range of variables, such as the measured adult body mass index(BMI) by age group, sexes and provinces of Canada.  In addition the survey was conducted by the Canadian Community Health Survey on the year of 2004 and 2015. After obtaining the dataset, the tidyverse[@citeTidyverse] package is used to clean and manipulate the data leaving only the variables needed for this analysis. The variables I selected for the analysis are "REF_DATE"(year of survey), "GEO"(states of Canada), "Sex"(males and females), "Age.group"(18 years and older), "BMI", "Number_of_Persons". This report will be focusing on the relationship between BMI and the proportion of obesity with other variables.  In this report, tables and graphs are generated with kableExtra[@citekableExtra], patchwork[@citepatchwork], and ggplot2[@ggplot2]. At the end, bookdown[@citemarkdown] and knitr[@citeKnitr] are used to format the report.    
 
- This report was produced with R Statistical Programming Language[@citeR] in the R Markdown file format. The dataset I utilized for this report is publicly available through Statistics Canada[@StatCan]. This dataset contains a wide range of variables, such as the measured adult body mass index(BMI) by age group, sexes and provinces of Canada.  In addition the survey was conducted by the Canadian Community Health Survey on the year of 2004 and 2015. After obtaining the dataset, the tidyverse[@citeTidyverse] package is used to clean and manipulate the data leaving only the variables needed for this analysis. The variables I selected for the analysis are "REF_DATE", "GEO", "Sex", "Age.group", "BMI", "Number_of_Persons". This report will be focusing on the relationship between BMI and the proportion of obesity with other variables.  In this report, tables and graphs are generated with kableExtra[@citekableExtra], patchwork[@citepatchwork], and ggplot2[@ggplot2]. At the end, bookdown[@citemarkdown] and knitr[@citeKnitr] are used to format the report.    
+ In the original data set, every number, such as number of persons, coefficient of variation, population proportion, high and low confidence interval are all mixed together under the variable VALUE. Therefore, I decided to use only the number of persons as the value to calculate the proportion of obese Canadians in our analysis. Since the data of both 2004 and 2015 are also mixed in the original dataset, I calculated the proportion of obesity for each variable corresponding the the year of the survey, and the calculated proportions is then put into a separated new column. Moreover, the range of each age group is modified since there are several age groups that overlaps with each other.  For instance, there were "18~20 years" and "18~24 years" which have two years of overlapping. BMI is categorized into different classes, which are "Underweight(BMI: under 18.50)", "Normal Weight(BMI: 18.50~24.99), "Overweight(BMI: 25~29.99)", and "Obese(BMI: Over 30)".  In addition, the obese population is further spitted into 3 classes, which are "Obese Class I (BMI number: 30~34.99)", "Obese Class II (BMI number: 35~39.99)", and "Obese Class III (BMI number: 40 or higher)".  In Table\@ref(tab:datapreview), a preview of a few columns and rows from the cleaned dataset is shown.  
 
- In the original data set, every numbers, such as number of persons, coefficient of variation, population proportion, high and low confidence interval are all mixed together under the variable VALUE. Therefore, I decided to use only the number of persons as the values for the calculation in our analysis. Since the data of both 2004 and 2015 are also mixed in this raw dataset, I calculated the proportion for each variable corresponding the the year of the survey, and the calculated proportions is then put into a separated new column. Moreover, the range of each age group is modified since there are several age groups that overlaps with each other.  For instance, there were "18~20 years" and "18~24 years" which have two years of overlapping. 
+\newpage
 
-# Results
+```{r datapreview, echo=FALSE, message=FALSE, warning=FALSE, fig.width=7, fig.height=3}
+# Creating a table showing a preview of the cleaned dataset
+BMI_data %>% 
+  slice(850:858) %>% 
+  knitr::kable(caption = "A preview of the cleaned dataset of Canadian's BMI", booktabs = T) %>% 
+  kable_styling(latex_options = c("scale_down"))
+```
 
-```{r YearBMI,echo=FALSE, message=FALSE, warning=FALSE, fig.width= 7, fig.height= 4, fig.cap="Canadian's BMI in 2004 and 2015"}
+\newpage
+
+# Results{#result}
+
+## Year
+In Figure\@ref(fig:YearBMI), we can see that there are a significantly higher proportion 26.68% of people who are obese compared to 23.09% of obese people in 2004. On the other end of being underweight, the year of 2015 also has a higher proportion of people than the year 2004. In the 11 years span from 2004 to 2015, proportion of people being normal weight decreased by 2.80%. 
+
+```{r YearBMI, echo=FALSE, message=FALSE, warning=FALSE, fig.width= 7, fig.height= 4, fig.cap="Canadian's BMI in 2004 and 2015"}
 
 # Create a subset where we can compare the BMI between 2004 and 2015
 BMI_data_years <- 
@@ -70,33 +84,77 @@ BMI_data_years <-
   
 
 # Create a bar graph to compare the BMI between 2004 and 2015
-ggplot(BMI_data_years, 
+BMI_years_graph <- 
+  ggplot(BMI_data_years, 
        aes(x = reorder(BMI, Percent), 
            y = Percent, 
            fill = REF_DATE)) + 
-geom_bar(stat="identity", position="dodge")+
-labs(x= "BMI", y = "Proportion", fill = "Year")
+  geom_bar(stat="identity", position="dodge")+
+  labs(x= "BMI", y = "Proportion", fill = "Year")
+
+show(BMI_years_graph)
 ```
 
-```{r SexBMI,echo=FALSE, message=FALSE, warning=FALSE,fig.width= 7, fig.height= 4, fig.cap="2015 Genders vs. BMI"}
+\newpage
+
+## Gender
+
+  In Figure\@ref(fig:SexBMI2004), we can see that the majority females proportion of 44.07% are normal weight, whereas the majority males proportion of 42.02 are overweight. In addition, males tend to have a higher proportion of being obese I than females, despite the fact that females proportion are slightly higher than males proportion in both obese class II and class III. Even though there's a different distribution of males and females within obese classes, the overall proportion of being obese are similar with males proportion of 22.95% and females proportion of 23.24%. 
+  In Figure\@ref(fig:SexBMI2015), we can see a similar BMI distribution of males and females as in 2004. However, the proportion of being obese for both males and females increase, and males now have a higher proportion 28.69% of being obese and females having obese proportion of 24.67%. As we observed, the increase of males obese proportion 5.74% are significantly larger than females' increased proportion of 1.43%. 
+
+```{r SexBMI2004,echo=FALSE, message=FALSE, warning=FALSE,fig.width= 7, fig.height= 3, fig.cap= "2004 Genders vs. BMI"}
 
 # Create a subset where we can compare the BMI between Males and Females
-BMI_data_sex <-
+BMI_data_sex_2004 <-
   BMI_data %>%
-  subset(REF_DATE == "2015" & GEO == "Canada" & Age.group == "Total, 18 years and over" & Sex != "Both sexes" & BMI != "Total Population" & BMI != "Obese")
+  subset(REF_DATE == "2004" & GEO == "Canada" & Age.group == "Total, 18 years and over" & Sex != "Both sexes" & BMI != "Total Population" & BMI != "Obese")
 
 # Add percentages to the data set 
-BMI_data_sex <-
-  BMI_data_sex %>% 
+BMI_data_sex_2004 <-
+  BMI_data_sex_2004 %>% 
   group_by(Sex) %>%
   mutate(Percent = Number_of_Persons/sum(Number_of_Persons))
 
 # Create a bar graph to compare the BMI of Males and Females in 2015
-ggplot(BMI_data_sex, aes(x = BMI, y = Percent, fill = Sex)) + 
+BMI_sex_graph_2004 <-
+  ggplot(BMI_data_sex_2004, aes(x = BMI, y = Percent, fill = Sex)) + 
   geom_bar(stat="identity", position="dodge")+
   theme(axis.text.x = element_text(angle = 50, vjust = 1, hjust= 1)) +
   labs(x= "BMI", y = "Proportion", fill = "Gender")
+
+show(BMI_sex_graph_2004)
 ```
+
+```{r SexBMI2015,echo=FALSE, message=FALSE, warning=FALSE,fig.width= 7, fig.height= 3, fig.cap= "2015 Genders vs. BMI"}
+
+# Create a subset where we can compare the BMI between Males and Females
+BMI_data_sex_2015 <-
+  BMI_data %>%
+  subset(REF_DATE == "2015" & GEO == "Canada" & Age.group == "Total, 18 years and over" & Sex != "Both sexes" & BMI != "Total Population" & BMI != "Obese")
+
+# Add percentages to the data set 
+BMI_data_sex_2015 <-
+  BMI_data_sex_2015 %>% 
+  group_by(Sex) %>%
+  mutate(Percent = Number_of_Persons/sum(Number_of_Persons))
+
+# Create a bar graph to compare the BMI of Males and Females in 2015
+BMI_sex_graph_2015 <-
+  ggplot(BMI_data_sex_2015, aes(x = BMI, y = Percent, fill = Sex)) + 
+  geom_bar(stat="identity", position="dodge")+
+  theme(axis.text.x = element_text(angle = 50, vjust = 1, hjust= 1)) +
+  labs(x= "BMI", y = "Proportion", fill = "Gender")
+
+show(BMI_sex_graph_2015)
+```
+
+\newpage
+
+## Age
+
+  In Figure\@ref(fig:AgeBMI), we can see that the majority of obese proportion in 2004 is between the age of 45~54 years old with the proportion of 25.76%, and minimum proportion of 6.46% is between the age 18~24 years old. On the other hand, despite still being the largest obese proportion in 2015, the age group 45~54 years old proportion decreased by 4.39%. Also, from 2004 to 2015, the obese proportion in age group 65~74 years old increased by 7.95%.
+  
+we can tell that there are highest proportions of obese people between 45~54 years old and lowest obese proportion between 18~24 years old in both 2004 and 2015. The overall shape of both 2004 and 2015 graphs are uni-modal and bell-shaped.
 
 ```{r AgeBMI, echo=FALSE, message=FALSE, warning=FALSE, fig.width= 7, fig.height= 4, fig.cap ="Proportion of Obesity at Different Ages"}
 
@@ -112,12 +170,21 @@ BMI_data_age <-
   mutate(Percent = Number_of_Persons/sum(Number_of_Persons))
 
 # Create a line graph to show BMI vs ages in both 2004 and 2015 
-ggplot(BMI_data_age, aes(x = Age.group, y = Percent, group = REF_DATE, color = REF_DATE))+ 
+BMI_age_graph <-
+  ggplot(BMI_data_age, aes(x = Age.group, y = Percent, group = REF_DATE, color = REF_DATE))+ 
   geom_point() +
   geom_line() + 
   theme(axis.text.x = element_text(angle = 50, vjust = 1, hjust= 1)) +
   labs(x= "Age Group", y = "Proportion", color = "Year")
+
+show(BMI_age_graph)
 ```
+
+\newpage
+
+## State
+
+In Figure\@ref(fig:StateBMI), the distribution of obese population in different states are almost identical in both 2004 and 2015, with Ontario having the highest proportion of obese people and Prince Edward Island being the lowest.  
 
 ```{r StateBMI, echo=FALSE, message=FALSE, warning=FALSE, fig.width= 7, fig.height= 4, fig.cap ="Proportion of Obesity in Different States"}
 
@@ -133,42 +200,28 @@ BMI_data_state <-
   mutate(Percent = Number_of_Persons/sum(Number_of_Persons))
 
 # Create a line graph to show BMI vs ages in both 2004 and 2015 
-ggplot(BMI_data_state, aes(x = GEO, y = Percent, group = REF_DATE, linetype = REF_DATE))+ 
+BMI_state_graph <- 
+  ggplot(BMI_data_state, aes(x = GEO, y = Percent, group = REF_DATE, linetype = REF_DATE))+ 
   geom_point() +
   geom_line() + 
   theme(axis.text.x = element_text(angle = 50, vjust = 1, hjust= 1)) +
   labs(x= "States in Canada", y = "Proportion", linetype = "Year")
+
+show(BMI_state_graph)
 ```
-\newpage
-
-# Discussion
-
-## Year
-In Figure\@ref(fig:YearBMI), we can see that there are a significantly higher proportion 26.68% of people who are obese compared to 23.09% of obese people in 2004. On the other end of being underweight, the year of 2015 also has a higher proportion of people than the year 2004. In the 10 year span from 2004 to 2015, proportion of people being normal weight decreased by 2.80%. 
-
-## Gender
-In Figure\@ref(fig:SexBMI), females tend to have a healthier BMI of being normal weight than males.  
-
-## Age
-In Figure\@ref(fig:AgeBMI), we can tell that between the age of 45 to 54 years old, there are highest proportions of obese people in both 2004 and 2015.
-
-## State
-In Figure\@ref(fig:StateBMI), the distribution of obese population in different states are almost identical in both 2004 and 2015, with Ontario having the highest proportion of obese people and Prince Edward Island being the lowest.  This is probably because of the large difference of population between each state. 
-
 
 \newpage
 
-\appendix
 
-# Appendix {-}
+# Discussion{#discussion}
 
 
-# Additional details
-
+  The results obtained from this paper provides us with an overview on how different variables relate with obesity.  To begin with, females tend to have an overall healthier BMI than males, for the majority proportion of females have normal body weight unlike males' majority being overweight. The difference between the overweight and obesity population in males and females increases dramatically in the time span of 11 years from 2004 to 2015. This result corresponds to the global average data, which suggests that the prevalence of overweight and obese males is much higher than that of females in some regions. As in many other countries, the gap between males and females overweight population is more prominent than in obese.{@NIHmale}  From our analysis, we can see that there are a higher obese population between the age of 45~54 years old in both 2004 and 2015.  The difference between the obesity distribution in terms of age is that, the obese proportions for people who are older have increased in 2015.  This might be the result from increased life expectancy of people due to medical improvements over the years. Lastly, from an almost identical distribution of obese population in each state of Canada, we can tell that the Ontario, being the most populated state in Canada, has the highest obese population. This might be the result from the large difference of population between each state, so states like Ontario and Quebec have higher obese proportion compared to states with less population, such as Prince Edward Island.  
+  
 
 \newpage
-
 
 # References
+
 
 
